@@ -148,17 +148,19 @@ public class BookController {
             page=1;
         }
         Integer total;
-        List<Book> list6 = bookService.selectPage(fid, sid, page);
+
         List<Book> queryByfid = bookService.queryByfid(fid, sid);
         if(queryByfid.size()%3==0){
             total=queryByfid.size()/3;
         }else{
             total=queryByfid.size()/3+1;
         }
+        List<Book> list6 = bookService.selectPage(fid, sid, page);
         System.out.println(total);
         request.setAttribute("total",total);
         request.setAttribute("list6",list6);
         request.setAttribute("category",category);
+        request.setAttribute("page",page);
         return "front/main/book_list";
     }
 
